@@ -1,0 +1,110 @@
+[
+  {
+    "id": 0,
+    "name": "Carbonara",
+    "image": "/assets/images/carbonara.jpg",
+    "price": "7.99",
+    "description": "Pastasciutta fatta con guanciale, pecorino, uova, sale e pepe.",
+    "comments": [
+      {
+        "id": 0,
+        "rating": 5,
+        "comment": "Wow! Squisita!",
+        "author": "Alessandro Borghese",
+        "date": "2022-10-16T17:57:28.556094Z"
+      },
+      {
+        "id": 1,
+        "rating": 5,
+        "comment": "Fantastica.",
+        "author": "Carlo Cracco",
+        "date": "2022-10-16T17:57:28.556094Z"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Amatriciana",
+    "image": "/assets/images/amatriciana.jpg",
+    "price": "6.99",
+    "description": "Pastasciutta fatta con guanciale, pecorino, polpa di pomodoro, sale e pepe.",
+    "comments": [
+      {
+        "id": 0,
+        "rating": 4,
+        "comment": "Ottima... anche se la ricetta originale non è piccante!",
+        "author": "Alessandro Borghese",
+        "date": "2022-10-16T17:57:28.556094Z"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Cacio & Pepe",
+    "image": "/assets/images/cacioepepe.jpg",
+    "price": "7.99",
+    "description": "Pastasciutta fatta con Pecorino, sale, pepe e Parmigiano Reggiano.",
+    "comments": [
+      {
+        "id": 0,
+        "rating": 5,
+        "comment": "Tanto formaggio! Bene!",
+        "author": "Alessandro Borghese",
+        "date": "2022-10-16T17:57:28.556094Z"
+      },
+      {
+        "id": 1,
+        "rating": 5,
+        "comment": "Cremosa e saporita, l'adoro.",
+        "author": "Carlo Cracco",
+        "date": "2022-10-16T17:57:28.556094Z"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Gricia",
+    "image": "/assets/images/gricia.jpg",
+    "price": "8.99",
+    "description": "Pastasciutta fatta con guanciale, pecorino, sale e pepe.",
+    "comments": [
+      {
+        "id": 0,
+        "rating": 1,
+        "comment": "Qualcuno chiami un medico, sto avendo un attacco di cuore!!",
+        "author": "Alessandro Borghese",
+        "date": "2022-10-16T17:57:28.556094Z"
+      },
+      {
+        "id": 1,
+        "rating": 2,
+        "comment": "Un po' troppo unta!",
+        "author": "Carlo Cracco",
+        "date": "2022-10-16T17:57:28.556094Z"
+      },
+      {
+        "id": 2,
+        "rating": 5,
+        "comment": "Ne voglio ancora!",
+        "author": "Stefano Casasola",
+        "date": "2022-10-16T17:57:28.556094Z"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Scogliera",
+    "image": "/assets/images/scogliera.jpg",
+    "price": "7.99",
+    "description": "Pastasciutta fatta con crostacei e frutti di mare",
+    "comments": [
+      {
+        "id": 0,
+        "rating": 5,
+        "comment": "Uno dei migliori spaghetti allo scoglio!",
+        "author": "Alessandro Borghese",
+        "date": "2022-10-16T17:57:28.556094Z"
+      }
+    ]
+  }
+]
