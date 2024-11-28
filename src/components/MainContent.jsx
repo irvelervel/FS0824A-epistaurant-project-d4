@@ -14,7 +14,7 @@ class MainContent extends Component {
       <>
         <Carousel
           onSlid={(index) => {
-            console.log('SLIDE CAMBIATA!', index)
+            // console.log('SLIDE CAMBIATA!', index)
             // bene! ma quello che dobbiamo fare è mantenere aggiornato lo STATE
             // c'è solo un problema nel lavorare con lo state... è READ-ONLY
             // NON FATELO -> this.state.activePasta = "qualcos'altro"
