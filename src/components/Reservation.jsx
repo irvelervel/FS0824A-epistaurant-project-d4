@@ -72,6 +72,8 @@ class Reservation extends Component {
   }
 
   render() {
+    console.log('RENDER DEL FORM')
+
     return (
       <>
         <h2>PRENOTA UN TAVOLO</h2>
@@ -90,8 +92,8 @@ class Reservation extends Component {
                 // qui devo fare una funzione che in base a quello che ho scritto
                 // setti il valore di this.state.reservation.name
                 (e) => {
-                  console.log('THIS', this)
-                  console.log('e', e)
+                  // console.log('THIS', this)
+                  // console.log('e', e)
                   this.setState({
                     reservation: {
                       ...this.state.reservation, // phone, numberOfPeople etc.
@@ -171,7 +173,7 @@ class Reservation extends Component {
           </Form.Group>
 
           {/* generalmente le graffe servono per interpolare della logica nel JSX */}
-          {console.log('CIAO')}
+          {/* {console.log('CIAO')} */}
 
           {/* oltre allo short-circuit è possibile utilizzare il ternary operator*/}
           {/* ? : */}
