@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Spinner, Alert, Button } from 'react-bootstrap'
 
 // PARTE INIZIALE DELLA LEZIONE (impostazione delle basi)
 // 1) Ho creato un componente a classe perchè avevo bisogno di uno "state", un oggetto dove "parcheggiare" i dati che eventualmente recupererò dalle API
@@ -32,6 +32,10 @@ class Admin extends Component {
     reservations: [],
     // se riesco a riempire questo array di reservations, l'interfaccia
     // è già "programmata" per creare tanti <li> quante sono le prenotazioni
+
+    // inserisco una variabile di stato aggiuntiva che mi permetterà di mostrare/nascondere l'indicatore di caricamento
+    isLoading: true,
+    isError: false,
   }
 
   getReservations = () => {
@@ -51,10 +55,19 @@ class Admin extends Component {
         // una volta recuperate le prenotazioni, le salvo nello stato
         this.setState({
           reservations: arrayOfReservations,
+          isLoading: false, // spengo lo spinner!
         })
       })
       .catch((err) => {
         console.log(err)
+        this.setState({
+          // qua le prenotazioni non ci sono, siamo in uno stato di errore...
+          // ...però almeno spengo lo spinner!
+          isLoading: false,
+          // se finisco qua, è il caso di mostrare un errore all'utente!
+          // accendo l'Alert
+          isError: true,
+        })
       })
   }
 
@@ -79,12 +92,79 @@ class Admin extends Component {
     return (
       <>
         <h2>TAVOLI PRENOTATI</h2>
+
+        {/* TRUE && TRUE -> TRUE */}
+        {/* FALSE && TRUE -> FALSE */}
+        {/* TRUE && FALSE -> FALSE */}
+        {/* FALSE && FALSE -> FALSE */}
+        {/* if(10 > 5 && name==='Stefano'){} */}
+
+        {/* qui vado ad inserire un messaggio d'errore nel caso la fetch vada male */}
+        {this.state.isError && (
+          <Alert variant="danger">Oops! Qualcosa è andato storto!😭</Alert>
+        )}
+
+        {/* qui vado ad inserire un indicatore di caricamento */}
+        {/* un AND ha bisogno di TRUE && TRUE per essere valido */}
+        {/* if this.state.loading... */}
+        {this.state.isLoading && (
+          <Spinner animation="border" role="status" variant="success">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
+
+        {/* ultimo caso limite: il caricamento va a buon fine, non ci sono errori ma l'array di prenotazioni è vuoto. Come lo mostro all'utente? */}
+        {!this.state.isLoading &&
+          !this.state.isError &&
+          this.state.reservations.length === 0 && (
+            <ListGroup>
+              <ListGroup.Item>
+                Non ci sono al momento prenotazioni
+              </ListGroup.Item>
+            </ListGroup>
+          )}
+
         <ListGroup>
           {this.state.reservations.map((res) => {
             // console.log(res)
             return (
-              <ListGroup.Item key={res._id}>
-                {res.name} per {res.numberOfPeople} il {res.dateTime}
+              <ListGroup.Item
+                key={res._id}
+                className="d-flex justify-content-between align-items-center"
+              >
+                <span>
+                  {res.name} per {res.numberOfPeople} il {res.dateTime}
+                </span>
+                <Button
+                  variant="warning"
+                  onClick={() => {
+                    fetch(
+                      'https://striveschool-api.herokuapp.com/api/reservation/' +
+                        res._id,
+                      {
+                        method: 'DELETE',
+                      }
+                    )
+                      .then((response) => {
+                        if (response.ok) {
+                          // ho eliminato l'elemento
+                          alert('eliminato')
+                          // ottimo! ora aggiorniamo la lista in tempo reale: vado a recuperare nuovamente
+                          // tutte le prenotazioni rimaste in database
+                          this.getReservations()
+                          // lo stato viene ri-settato con l'array attuale, a causa di ciò render() viene
+                          // nuovamente re-invocato e grazie alla key che identifica ogni elemento capisce al volo quale elemento non c'è più e in un nanosecondo lo rimuove dalla lista!
+                        } else {
+                          throw new Error('errore durante eliminazione')
+                        }
+                      })
+                      .catch((err) => {
+                        alert('non eliminato', err)
+                      })
+                  }}
+                >
+                  X
+                </Button>
               </ListGroup.Item>
             )
           })}
